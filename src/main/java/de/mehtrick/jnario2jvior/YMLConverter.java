@@ -33,6 +33,7 @@ class YMLConverter {
 		File f = new File(path.toString());
 		f.getParentFile().mkdirs();
 		f.createNewFile();
+		System.out.println("Generated file " + f.getPath());
 		BufferedWriter writer = Files.newBufferedWriter(path);
 		writer.write(jviorLines);
 		writer.close();
