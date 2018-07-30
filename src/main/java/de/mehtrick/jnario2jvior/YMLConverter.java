@@ -23,7 +23,7 @@ class YMLConverter {
 			jviorLines = YMLConverter.indentToYmlFormat(jviorLines);
 			createFile(jviorLines, jnarioFeature, genDir);
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new JnarioToJviorException(jnarioFeature, e);
 		}
 	}
 
