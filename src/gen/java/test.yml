@@ -1,0 +1,16 @@
+Feature: Calculator
+Background:
+	Given:
+		- a calculator
+		- another calc
+Scenarios:
+	- Scenario: Adding two numbers
+		When:
+			- adding two numbers "5" and "6".
+		Then:
+			- it prints "11"
+	- Scenario: Dividing two numbers
+		When:
+			- entering two numbers "10" and "5" and pressing enter.
+		Then:
+			- it prints "2"
