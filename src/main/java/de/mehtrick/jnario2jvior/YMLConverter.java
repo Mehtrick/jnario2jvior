@@ -53,6 +53,8 @@ class YMLConverter {
 			line = line.replaceFirst("Then", "Then:" + NEW_LINE + "-");
 		} else if (line.startsWith(BDDKeywords.And.toString())) {
 			line = line.replaceFirst("And", "-");
+		} else if (line.startsWith(BDDKeywords.But.toString())) {
+			line = line.replaceFirst("But", "-");
 		} else if (line.startsWith(BDDKeywords.Scenario.toString())) {
 			line = line.replaceFirst("Scenario", "- Scenario");
 		}
@@ -72,12 +74,13 @@ class YMLConverter {
 		int startOfScenarioBlock = findStartOfScenarioBlock(lines);
 		for (int i = startOfScenarioBlock; i < lines.length; i++) {
 			if (lines[i].startsWith("- Scenario:")) {
-				lines[i] = "\t" + lines[i];
+				lines[i] = "  " + lines[i];
 			} else if (StringUtils.startsWithAny(lines[i], BDDKeywords.Given.toString(), BDDKeywords.When.toString(),
 					BDDKeywords.Then.toString())) {
-				lines[i] = "\t\t" + lines[i];
+				lines[i] = "    " + lines[i];
 			} else if (StringUtils.startsWithAny(lines[i], "-")) {
-				lines[i] = "\t\t\t" + lines[i];
+				lines[i] = "      " + lines[i];
+				lines[i] = lines[i].replace(":", "");
 			}
 		}
 		return StringUtils.join(lines, NEW_LINE);
@@ -97,9 +100,9 @@ class YMLConverter {
 		String[] lines = StringUtils.split(collect, NEW_LINE);
 		for (int i = 0; i < lines.length && !lines[i].startsWith("Scenarios"); i++) {
 			if (lines[i].startsWith("Given")) {
-				lines[i] = "\t" + lines[i];
+				lines[i] = "  " + lines[i];
 			} else if (lines[i].startsWith("-")) {
-				lines[i] = "\t\t" + lines[i];
+				lines[i] = "    " + lines[i];
 			}
 		}
 		return StringUtils.join(lines, NEW_LINE);

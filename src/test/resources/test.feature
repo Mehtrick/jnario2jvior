@@ -9,7 +9,7 @@ Background:
   	calculator = new
  
 Scenario: Adding two numbers
-  When adding two numbers "5" and "6". 
+  When adding two numbers "5:" and "6". 
     result = calculator.add(args.first.toInt, args.second.toInt)
   Then it prints "11"
     result => args.first.toInt
